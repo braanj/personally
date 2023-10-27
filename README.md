@@ -50,6 +50,8 @@ To create the Vue.js blog app, follow these steps:
 
    ```bash
    git clone https://github.com/braanj/personally.git
+
+   git checkout dev
    ```
 
    - Install dependencies:

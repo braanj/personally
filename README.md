@@ -20,8 +20,8 @@ The application is structured as follows:
 
 Before diving into the technical details, ensure that you have the following tools and technologies installed:
 
-- Vue.js 2.x
-- Node.js and yarn (Node Package Manager)
+- Vue.js 3.x
+- Node.js and pnpm (Nerformant Node Package Manager)
 - A code editor (e.g., Visual Studio Code)
 - Basic knowledge of HTML, CSS, and JavaScript
 
@@ -29,22 +29,7 @@ Before diving into the technical details, ensure that you have the following too
 
 To create the Vue.js blog app, follow these steps:
 
-1. **Vue CLI Installation**: If you haven't already installed Vue CLI, do so by running the following command:
-
-   ```bash
-   npm install -g @vue/cli
-   ```
-
-2. **Project Creation**: Create a new Vue project by running the following commands:
-
-   ```bash
-   vue create vue-blog-app
-   ```
-
-   Follow the prompts to configure the project.
-   **Note**: this part is already done so that you'll focus only on learning vue js syntax.
-
-3. **Run the application**: Clone this repository and install the packages:
+1. **Run the application**: Clone this repository and install the packages:
 
    - Clone the project:
 
@@ -57,26 +42,32 @@ To create the Vue.js blog app, follow these steps:
    - Install dependencies:
 
    ```bash
-   yarn
+   pnpm install
    ```
 
    - Run the project:
 
    ```
-   yarn serve
+   pnpm dev
    ```
 
-4. **Component Setup**: Create components for the Home Page, Category Page, and Single Article Page.
+2. **Type-Check, Compile and Minify for Production**
 
-5. **Routing**: Set up Vue Router to handle navigation between these pages.
+   ```sh
+   npm run build
+   ```
 
-6. **Sample Data**: For testing purposes, create sample data in the form of JSON files to represent articles and categories.
+3. **Component Setup**: Create components for the Home Page, Category Page, and Single Article Page.
 
-7. **Styling**: Style the application using CSS or a CSS framework (e.g., Bootstrap).
+4. **Routing**: Set up Vue Router to handle navigation between these pages.
 
-8. **Implement Logic**: Implement the logic for displaying articles, filtering by category, and showing recommended articles.
+5. **Sample Data**: For testing purposes, create sample data in the form of JSON files to represent articles and categories.
 
-9. **Testing**: Test the application to ensure it functions correctly.
+6. **Styling**: Style the application using CSS or a CSS framework (e.g., Bootstrap).
+
+7. **Implement Logic**: Implement the logic for displaying articles, filtering by category, and showing recommended articles.
+
+8. **Testing**: Test the application to ensure it functions correctly.
 
 ## Components
 
@@ -102,23 +93,23 @@ To create the Vue.js blog app, follow these steps:
 - Use Vue Router to define routes for the Home Page, Category Page, and Single Article Page.
 
 ```javascript
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import HomePage from './components/HomePage.vue';
-import CategoryPage from './components/CategoryPage.vue';
-import SingleArticlePage from './components/SingleArticlePage.vue';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import HomePage from "./components/HomePage.vue";
+import CategoryPage from "./components/CategoryPage.vue";
+import SingleArticlePage from "./components/SingleArticlePage.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: HomePage },
-  { path: '/category/:category', component: CategoryPage },
-  { path: '/article/:id', component: SingleArticlePage },
+  { path: "/", component: HomePage },
+  { path: "/category/:category", component: CategoryPage },
+  { path: "/article/:id", component: SingleArticlePage },
 ];
 
 const router = new VueRouter({
   routes,
-  mode: 'history',
+  mode: "history",
 });
 
 export default router;
@@ -169,3 +160,44 @@ Thoroughly test the application to ensure that all components, routes, and featu
 ## Conclusion
 
 This technical document provides an overview of, **Personally**, a simple Vue.js blog application. By following the steps outlined here, you can create a functional and visually appealing blog app using Vue.js version 2. Remember to continuously improve and expand the app's features to make it more engaging for users.
+
+---
+
+This template should help get you started developing with Vue 3 in Vite.
+
+## Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+
+1. Disable the built-in TypeScript Extension
+   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```

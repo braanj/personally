@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import { useRoute } from "vue-router";
-const route = useRoute();
-console.log(route.fullPath);
-</script>
-
 <template>
   <div class="container">
     <h1>Home page</h1>
@@ -13,8 +7,20 @@ console.log(route.fullPath);
       maxime in natus vero cum excepturi sed obcaecati itaque consequuntur.
       Molestiae!
     </p>
-    <div>
-      <RouterView />
-    </div>
   </div>
+  <SectionContainer>
+    <PostsList title="News" path="/news" :posts="data" />
+  </SectionContainer>
+  <SectionContainer>
+    <PostsList title="News" path="/tutorials" :posts="data" />
+  </SectionContainer>
 </template>
+
+<script setup lang="ts">
+import { usePosts } from "@/composable/useApi";
+import type { Post } from "@/types/Post";
+import PostsList from "@/components/PostsList.vue";
+import SectionContainer from "@/components/SectionContainer.vue";
+
+let data: Post[] = usePosts().slice(0, 3);
+</script>

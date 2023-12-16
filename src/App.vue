@@ -5,7 +5,7 @@ import AppHeader from "./components/AppHeader.vue";
 
 <template>
   <AppHeader />
-  <main class="prose mt-20">
+  <main class="prose max-w-none mt-20">
     <RouterView />
   </main>
 </template>

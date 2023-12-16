@@ -13,6 +13,8 @@ dist
 dist-ssr
 coverage
 *.local
+*.development
+*.sh
 
 /cypress/videos/
 /cypress/screenshots/

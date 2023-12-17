@@ -7,3 +7,15 @@
 .container {
   @apply max-w-[1280px] mx-auto px-4;
 }
+
+.text-gradiant {
+  background: var(
+    --Hot-Graient,
+    linear-gradient(97deg, #c41740 4.8%, #ea9c28 100%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @apply font-bold lg:text-7xl md:text-6xl text-4xl mb-0;
+}

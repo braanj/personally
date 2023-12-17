@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white py-20">
+  <div class="bg-white py-20 min-h-[90vh] justify-center items-center flex">
     <div
       class="prose container flex flex-col items-center text-center justify-center"
     >

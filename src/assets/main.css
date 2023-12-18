@@ -37,3 +37,9 @@
 .post-content img {
   @apply w-full h-auto rounded;
 }
+.post-content blockquote {
+  @apply border-[#c41740] text-xl font-bold;
+}
+.post-content blockquote p {
+  @apply text-xl font-bold mx-5 my-10;
+}

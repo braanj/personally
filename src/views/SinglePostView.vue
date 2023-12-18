@@ -30,6 +30,8 @@ import SectionContainer from "@/components/SectionContainer.vue";
 const route = useRoute();
 const post = usePosts().find((post: Post) => route.path === post.path);
 const recommended = usePosts().filter((item: Post) => {
+  if (item.slug === post?.slug) return false;
+
   if (post && Array.isArray(post.category)) {
     if (Array.isArray(item.category)) {
       return item.category.find((c) => post.category.includes(c));

@@ -6,6 +6,6 @@ import AppHeader from "./components/AppHeader.vue";
 <template>
   <AppHeader />
   <main class="mt-[72px] w-full prose max-w-none">
-    <RouterView />
+    <RouterView :key="$route.fullPath" />
   </main>
 </template>

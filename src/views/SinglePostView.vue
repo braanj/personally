@@ -30,11 +30,3 @@ const markdownRendered = computed(() => {
   return converter.makeHtml(post?.content);
 });
 </script>
-
-<style scoped>
-.post-content img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px !important;
-}
-</style>

@@ -11,4 +11,5 @@ export interface Post {
   published_at: string;
   source: string;
   slug: string;
+  path?: string;
 }

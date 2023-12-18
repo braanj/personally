@@ -19,7 +19,7 @@ import type { Post } from "@/types/Post";
 import PostsList from "@/components/PostsList.vue";
 import SectionContainer from "@/components/SectionContainer.vue";
 
-const posts: Post[] = usePosts({ limit: 2 });
+const posts: Post[] = usePosts({ limit: 10 });
 const tutorials: Post[] = useTutorials({ limit: 4 });
 const articles: Post[] = useTutorials({ limit: 6 });
 </script>

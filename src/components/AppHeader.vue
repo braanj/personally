@@ -1,7 +1,9 @@
 <template>
   <header class="py-6 shadow-md fixed top-0 w-full bg-white">
     <div class="flex gap-2 justify-between items-center container">
-      <AppLogo />
+      <RouterLink to="/">
+        <AppLogo />
+      </RouterLink>
 
       <nav class="flex gap-4 justify-end">
         <template v-for="item in navigation" :key="item.label">

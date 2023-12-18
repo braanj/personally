@@ -12,6 +12,9 @@
     ></div>
     <div class="post-content container py-10" v-html="markdownRendered"></div>
   </div>
+  <SectionContainer>
+    <PostsList title="News" path="/tutorials" :posts="recommended" />
+  </SectionContainer>
 </template>
 
 <script setup lang="ts">
@@ -21,9 +24,28 @@ import { useRoute } from "vue-router";
 import { computed } from "vue";
 // @ts-ignore
 import showdown from "showdown";
+import PostsList from "@/components/PostsList.vue";
+import SectionContainer from "@/components/SectionContainer.vue";
 
 const route = useRoute();
 const post = usePosts().find((post: Post) => route.path === post.path);
+const recommended = usePosts().filter((item: Post) => {
+  if (post && Array.isArray(post.category)) {
+    if (Array.isArray(item.category)) {
+      return item.category.find((c) => post.category.includes(c));
+    } else {
+      return post.category.includes(item.category);
+    }
+  } else {
+    if (Array.isArray(item.category)) {
+      return item.category.includes(post?.category as string);
+    } else {
+      return post?.category === item.category;
+    }
+  }
+});
+
+console.log(recommended);
 
 const markdownRendered = computed(() => {
   const converter = new showdown.Converter();

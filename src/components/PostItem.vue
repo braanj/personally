@@ -1,7 +1,7 @@
 <template>
   <RouterLink
     v-if="post"
-    :to="post.slug"
+    :to="post.path ? post.path : ''"
     class="md:flex justify-between gap-6 md:px-6 md:py-4 items-center bg-white rounded-lg no-underline"
   >
     <div class="p-6 md:p-0 w-auto">

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between">
+  <div class="flex justify-between mb-4">
     <h2 class="h2-bold">{{ title }}</h2>
     <RouterLink
       class="m-0 no-underline px-3 py-1 bg-white rounded-md"

@@ -1,13 +1,13 @@
 <template>
-  <AppHero :data="homepageData.hero" />
+  <AppHero fullHeight :data="homepageData" />
   <SectionContainer>
-    <PostsList title="News" path="/news" :posts="posts" />
+    <PostsList title="News" path="/posts/news" :posts="posts" />
   </SectionContainer>
   <SectionContainer>
-    <PostsList title="News" path="/tutorials" :posts="tutorials" />
+    <PostsList title="News" path="/posts/tutorials" :posts="tutorials" />
   </SectionContainer>
   <SectionContainer>
-    <PostsList title="News" path="/tutorials" :posts="articles" />
+    <PostsList title="News" path="/posts/tutorials" :posts="articles" />
   </SectionContainer>
 </template>
 

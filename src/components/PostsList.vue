@@ -2,6 +2,7 @@
   <div class="flex justify-between mb-4">
     <h2 class="h2-bold">{{ title }}</h2>
     <RouterLink
+      v-if="path"
       class="m-0 no-underline px-3 py-1 bg-white rounded-md"
       :to="path"
       >View all</RouterLink
@@ -25,7 +26,6 @@ const { posts } = defineProps({
   },
   path: {
     type: String,
-    required: true,
   },
 });
 </script>

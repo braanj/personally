@@ -1,0 +1,45 @@
+@import "./base.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  @apply max-w-[1000px] mx-auto px-4;
+}
+
+.text-gradiant {
+  background: var(
+    --Hot-Graient,
+    linear-gradient(97deg, #c41740 4.8%, #ea9c28 100%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @apply font-bold lg:text-7xl md:text-6xl text-4xl mb-0;
+}
+
+.h2-bold {
+  @apply m-0 font-bold text-2xl;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6,
+.post-content p:not(:has(img)) {
+  @apply mx-16;
+}
+
+.post-content img {
+  @apply w-full h-auto rounded;
+}
+.post-content blockquote {
+  @apply border-[#c41740] text-xl font-bold;
+}
+.post-content blockquote p {
+  @apply text-xl font-bold mx-5 my-10;
+}

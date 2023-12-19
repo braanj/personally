@@ -1,9 +1,12 @@
 <template>
-  <div class="bg-white py-20 min-h-[90vh] justify-center items-center flex">
+  <div
+    class="bg-white py-20 justify-center items-center flex"
+    :class="{ 'min-h-[90vh]': fullHeight }"
+  >
     <div
       class="prose container flex flex-col items-center text-center justify-center"
     >
-      <span class="bg-gray-200 py-2 px-4 mb-2 rounded-full">{{
+      <span v-if="data.badge" class="bg-gray-200 py-2 px-4 mb-2 rounded-full">{{
         data.badge
       }}</span>
       <GradiantTitle :text="data.title" />
@@ -22,5 +25,6 @@ const { data } = defineProps({
     type: Object,
     required: true,
   },
+  fullHeight: Boolean,
 });
 </script>

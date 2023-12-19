@@ -94,7 +94,10 @@ export function usePosts({ limit }: { limit: number } = { limit: 0 }) {
 
   posts = posts.map((post, index) => ({
     ...post,
-    path: `/post/${post.slug}`,
+    category: Array.isArray(post.category)
+      ? [...post.category]
+      : [post.category],
+    path: `/posts/news/${post.slug}`,
     image: `https://picsum.photos/id/${index * 15}/1200/600`,
   }));
   return limit ? posts.slice(0, limit) : posts;
@@ -194,7 +197,10 @@ export function useTutorials({ limit }: { limit: number } = { limit: 0 }) {
 
   posts = posts.map((post, index) => ({
     ...post,
-    path: `/post/${post.slug}`,
+    category: Array.isArray(post.category)
+      ? [...post.category]
+      : [post.category],
+    path: `/posts/tutorials/${post.slug}`,
     image: `https://picsum.photos/id/${index * 15}/1200/600`,
   }));
   return limit ? posts.slice(0, limit) : posts;

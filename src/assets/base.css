@@ -58,6 +58,10 @@
   font-weight: normal;
 }
 
+*::first-letter {
+  text-transform: uppercase;
+}
+
 body {
   min-height: 100vh;
   color: var(--color-text);

@@ -1,6 +1,6 @@
 <template>
   <AppHero fullHeight :data="homepageData" />
-  <SectionContainer>
+  <SectionContainer v-if="posts">
     <PostsList title="News" path="/posts/news" :posts="posts" />
   </SectionContainer>
   <SectionContainer>
@@ -18,8 +18,16 @@ import { usePosts, useTutorials } from "@/composable/useApi";
 import type { Post } from "@/types/Post";
 import PostsList from "@/components/PostsList.vue";
 import SectionContainer from "@/components/SectionContainer.vue";
+import { onMounted, ref } from "vue";
 
-const posts: Post[] = usePosts({ limit: 10 });
-const tutorials: Post[] = useTutorials({ limit: 4 });
+let posts = ref();
+const tutorials: Post[] = usePosts({ limit: 4 });
 const articles: Post[] = useTutorials({ limit: 6 });
+
+onMounted(async () => {
+  const { handler } = await import("../api/route");
+
+  const news = await handler("everything?q=Apple&pageSize=10");
+  posts.value = news;
+});
 </script>

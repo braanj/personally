@@ -11,7 +11,7 @@
     </div>
     <div
       class="md:max-w-[30%] h-full w-full min-h-[200px] bg-cover bg-center md:rounded rounded-ee-md rounded-es-md"
-      :style="`background-image: url(${post.image})`"
+      :style="`background-image: url(${post.image || post.urlToImage})`"
     ></div>
   </RouterLink>
 </template>

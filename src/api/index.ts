@@ -11,8 +11,8 @@ export const fetcher = async (route: string) => {
   /**
    * Base URL for the API. It represents the root URL of the Nuxt.js API.
    */
-  const baseUrl = import.meta.env.VITE_MEDIA_STACK_API_BASE_URL;
-  const apiKey = import.meta.env.VITE_MEDIA_STACK_API_KEY as string;
+  const baseUrl = import.meta.env.VITE_NEWS_API_BASE_URL;
+  const apiKey = import.meta.env.VITE_NEWS_API_KEY as string;
 
   // Construct the full URL for the API request.
   const request = `${route}`;
@@ -24,11 +24,18 @@ export const fetcher = async (route: string) => {
 
   const response = await instance.get(request, {
     params: {
-      access_key: apiKey,
+      apiKey: apiKey,
     },
   });
 
   if (response.status === 200) {
-    return response.data;
+    console.log(response.data);
+
+    const data = response.data.articles.map((article: any) => ({
+      ...article,
+      path: `/posts/news/${article.title.split(" ").join("-").toLowerCase()}`,
+    }));
+
+    return data;
   }
 };

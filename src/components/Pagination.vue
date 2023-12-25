@@ -1,6 +1,11 @@
 <template>
   <SectionContainer>
-    <PostItem v-for="post in displayedItems" :key="post.title" :post="post" />
+    <template v-for="post in displayedItems">
+      <Transition name="slide-fade">
+        <PostItem v-if="post" :post="post" :key="post.title" />
+      </Transition>
+    </template>
+
     <div v-if="showPagination" class="flex gap-4 justify-between items-center">
       <div>
         <p>

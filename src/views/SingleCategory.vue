@@ -1,15 +1,12 @@
 <template>
-  <SectionContainer>
-    <PostsList title="News" path="/posts/news" :posts="posts" />
-  </SectionContainer>
+  <Pagination :items="posts" :items-per-page="5" />
 </template>
 
 <script setup lang="ts">
 import { usePosts } from "@/composable/useApi";
 import type { Post } from "@/types/Post";
-import PostsList from "@/components/PostsList.vue";
-import SectionContainer from "@/components/SectionContainer.vue";
 import { useRoute } from "vue-router";
+import Pagination from "@/components/Pagination.vue";
 const route = useRoute();
 const category = route.query.category as string;
 

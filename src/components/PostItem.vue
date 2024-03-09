@@ -5,9 +5,7 @@
     class="md:flex justify-between gap-6 md:px-6 md:py-4 items-center bg-white rounded-lg no-underline"
   >
     <div class="p-6 md:p-0 w-auto">
-      <small class="block mb-4 font-bold text-gray-400">{{
-        post.published_at
-      }}</small>
+      <small class="block mb-4 font-bold text-gray-400">{{ date }}</small>
       <h2 class="m-0">{{ post.title }}</h2>
       <p class="hidden md:block">{{ post.description }}</p>
     </div>
@@ -21,10 +19,18 @@
 <script setup lang="ts">
 import type { Post } from "@/types/Post";
 import type { PropType } from "vue";
+import { computed } from "vue";
 
 const { post } = defineProps({
   post: {
     type: Object as PropType<Post>,
   },
+});
+
+const date = computed(() => {
+  const dateString = post?.published_at as string;
+  const date = new Date(dateString);
+
+  return date.toDateString();
 });
 </script>

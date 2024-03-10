@@ -7,7 +7,7 @@ import axios from "axios";
  * @returns {Promise<any>} - A Promise that resolves to the JSON response if the request is successful.
  *                           If the request fails (non-2xx status), the Promise is rejected.
  */
-export const fetcher = async (route: string) => {
+export const fetcher = async (route: string): Promise<any> => {
   /**
    * Base URL for the API. It represents the root URL of the Nuxt.js API.
    */

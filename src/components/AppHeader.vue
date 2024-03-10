@@ -8,10 +8,10 @@
       <nav class="flex gap-4 justify-end">
         <template v-for="item in navigation" :key="item.label">
           <RouterLink
-            class="font-bold"
+            class="font-bold visited:text-purple-600"
             :class="{
               'text-gray-500': item.path !== $route.fullPath,
-              'text-black-500': item.path === $route.fullPath,
+              'text-blue-500': item.path === $route.fullPath,
             }"
             :to="item.path"
             :title="item.title"

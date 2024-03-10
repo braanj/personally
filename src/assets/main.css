@@ -37,7 +37,8 @@
 }
 
 .post-content img {
-  @apply w-full h-auto rounded;
+  aspect-ratio: 3/1;
+  @apply w-full h-auto rounded bg-gray-200 text-center;
 }
 .post-content blockquote {
   @apply border-[#c41740] text-xl font-bold;

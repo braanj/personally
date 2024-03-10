@@ -19,12 +19,7 @@ const category = route.query.category as string;
 const posts: Post[] = category
   ? usePosts().filter((post) => {
       const postCategories = post.category.toString().toLowerCase().split(",");
-
-      if (post && Array.isArray(post.category)) {
-        return postCategories.includes(category);
-      } else {
-        return post.category === category;
-      }
+      return postCategories.includes(category);
     })
   : usePosts();
 </script>

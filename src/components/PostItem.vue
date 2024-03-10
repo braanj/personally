@@ -2,7 +2,7 @@
   <RouterLink
     v-if="post"
     :to="post.path ? post.path : ''"
-    class="md:flex justify-between gap-6 md:px-6 md:py-4 items-center bg-white rounded-lg no-underline"
+    class="md:flex justify-between gap-6 md:px-6 md:py-4 items-center bg-white rounded-lg no-underline border border-gray"
   >
     <div class="p-6 md:p-0 w-auto">
       <small class="block mb-4 font-bold text-gray-400">{{ date }}</small>
@@ -10,7 +10,7 @@
       <p class="hidden md:block">{{ post.description }}</p>
     </div>
     <div
-      class="md:max-w-[30%] h-full w-full min-h-[200px] bg-cover bg-center md:rounded rounded-ee-md rounded-es-md"
+      class="md:max-w-[30%] bg-gray-200 h-full w-full min-h-[200px] bg-cover bg-center md:rounded rounded-ee-md rounded-es-md"
       :style="`background-image: url(${post.image})`"
     ></div>
   </RouterLink>

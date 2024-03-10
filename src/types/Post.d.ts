@@ -4,7 +4,7 @@ export interface Post {
   title: string;
   description: string;
   author: string;
-  category: string | string[];
+  category: string[];
   country: string;
   image?: string | null;
   language: string | string[];

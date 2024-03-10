@@ -5,8 +5,13 @@
 <script setup lang="ts">
 import { usePosts } from "@/composable/useApi";
 import type { Post } from "@/types/Post";
+import { defineAsyncComponent } from "vue";
 import { useRoute } from "vue-router";
-import Pagination from "@/components/Pagination.vue";
+
+const Pagination = defineAsyncComponent(
+  () => import("@/components/Pagination.vue")
+);
+
 const route = useRoute();
 const category = route.query.category as string;
 

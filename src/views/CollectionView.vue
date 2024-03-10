@@ -4,9 +4,11 @@
 </template>
 
 <script setup lang="ts">
-import AppHero from "@/components/AppHero.vue";
 import { newsCategoryHero } from "@/constants";
+import { defineAsyncComponent } from "vue";
 import { RouterView, useRoute } from "vue-router";
+
+const AppHero = defineAsyncComponent(() => import("@/components/AppHero.vue"));
 
 const route = useRoute();
 const category = route.query.category as string;

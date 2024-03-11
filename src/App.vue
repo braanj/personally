@@ -1,32 +1,32 @@
+<script setup lang="ts">
+import { RouterView } from "vue-router";
+import { defineAsyncComponent } from "vue";
+
+const SectionContainer = defineAsyncComponent(
+  () => import("@/components/SectionContainer.vue")
+);
+
+const AppHeader = defineAsyncComponent(
+  () => import("./components/AppHeader.vue")
+);
+</script>
+
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
+  <AppHeader />
+  <main class="mt-[72px] w-full prose max-w-none">
+    <RouterView :key="$route.fullPath" />
+  </main>
+  <div class="sticky bottom-0">
+    <hr />
+    <SectionContainer class="py-3">
+      <small class="text-center text-black"
+        >&copy; A collaborative work -
+        <a
+          class="text-blue-600 visited:text-purple-600"
+          href="https://github.com/braanj/personally"
+          >Github</a
+        ></small
+      >
+    </SectionContainer>
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>

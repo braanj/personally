@@ -1,0 +1,84 @@
+<template>
+  <div v-if="post">
+    <div class="container text-center md:py-20 py-10">
+      <h1 class="text-gradiant text-center">{{ post.title }}</h1>
+      <small class="block mt-10 font-bold">{{ post.published_at }}</small>
+      <div class="flex gap-4 justify-center mt-6">
+        <RouterLink
+          class="px-3 py-1 no-underline bg-slate-300 rounded"
+          v-for="c in postCategories"
+          :to="c.path"
+          >{{ c.name }}</RouterLink
+        >
+      </div>
+    </div>
+    <div
+      class="xl:max-w-[80%] mx-auto bg-gray-200 w-full xxl:min-h-[600px] md:min-h-[500px] min-h-[200px] bg-cover bg-center md:rounded rounded-ee-md rounded-es-md"
+      :style="`background-image: url(${post.image})`"
+    ></div>
+    <div class="post-content container py-10" v-html="markdownRendered"></div>
+  </div>
+  <SectionContainer class="py-20">
+    <PostsList title="Recommended articles" :posts="recommended" />
+  </SectionContainer>
+</template>
+
+<script setup lang="ts">
+import { usePosts } from "@/composable/useApi";
+import type { Post } from "@/types/Post";
+import { useRoute } from "vue-router";
+import { computed, defineAsyncComponent, onMounted, ref } from "vue";
+
+import useCreateLink from "@/composable/useCreateLink";
+import usePreloadImage from "@/composable/usePreloadImage";
+
+const SectionContainer = defineAsyncComponent(
+  () => import("@/components/SectionContainer.vue")
+);
+
+const PostsList = defineAsyncComponent(
+  () => import("@/components/PostsList.vue")
+);
+
+const route = useRoute();
+
+const post = usePosts().find((post: Post) => route.path === post.path);
+const recommended = usePosts()
+  .filter((item: Post) => {
+    if (item.slug === post?.slug) return false;
+
+    if (post && Array.isArray(post.category)) {
+      if (Array.isArray(item.category)) {
+        return item.category.find((c) => post.category.includes(c));
+      } else {
+        return post.category.includes(item.category);
+      }
+    }
+  })
+  .slice(0, 3);
+
+const markdownRendered = ref("");
+
+onMounted(async () => {
+  const useMarkdown = (await import("@/composable/useMarkdown")).default;
+  await useMarkdown(post?.content).then((response) => {
+    markdownRendered.value = response;
+  });
+});
+
+const postCategories = computed(() => {
+  if (post) {
+    return post.category.reduce((prev: { [x: string]: string }[], next) => {
+      return [
+        ...prev,
+        { name: next, path: `/posts/news?category=${next.toLowerCase()}` },
+      ];
+    }, []);
+  }
+});
+
+if (post && post.image) {
+  const image = useCreateLink(post.image);
+  usePreloadImage(image);
+}
+</script>

@@ -5,8 +5,13 @@
 <script setup lang="ts">
 import { usePosts } from "@/composable/useApi";
 import type { Post } from "@/types/Post";
+import { defineAsyncComponent } from "vue";
 import { useRoute } from "vue-router";
-import Pagination from "@/components/Pagination.vue";
+
+const Pagination = defineAsyncComponent(
+  () => import("@/components/Pagination.vue")
+);
+
 const route = useRoute();
 const category = route.query.category as string;
 
@@ -19,12 +24,7 @@ const category = route.query.category as string;
 const posts: Post[] = category
   ? usePosts().filter((post) => {
       const postCategories = post.category.toString().toLowerCase().split(",");
-
-      if (post && Array.isArray(post.category)) {
-        return postCategories.includes(category);
-      } else {
-        return post.category === category;
-      }
+      return postCategories.includes(category);
     })
   : usePosts();
 </script>

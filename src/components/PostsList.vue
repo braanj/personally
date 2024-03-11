@@ -8,13 +8,16 @@
       >View all</RouterLink
     >
   </div>
-  <PostItem v-for="post in posts" :key="post.title" :post="post" />
+  <PostItem v-for="post in posts" :key="post.title" :post="post" v-once />
 </template>
 
 <script setup lang="ts">
 import type { Post } from "@/types/Post";
-import type { PropType } from "vue";
-import PostItem from "@/components/PostItem.vue";
+import { defineAsyncComponent, ref, type PropType, onMounted } from "vue";
+
+const PostItem = defineAsyncComponent(
+  () => import("@/components/PostItem.vue")
+);
 
 const { posts } = defineProps({
   posts: {

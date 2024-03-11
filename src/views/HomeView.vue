@@ -12,12 +12,20 @@
 </template>
 
 <script setup lang="ts">
-import AppHero from "@/components/AppHero.vue";
 import { homepageData } from "@/constants";
 import { usePosts, useTutorials } from "@/composable/useApi";
 import type { Post } from "@/types/Post";
-import PostsList from "@/components/PostsList.vue";
-import SectionContainer from "@/components/SectionContainer.vue";
+import { defineAsyncComponent } from "vue";
+
+const AppHero = defineAsyncComponent(() => import("@/components/AppHero.vue"));
+
+const SectionContainer = defineAsyncComponent(
+  () => import("@/components/SectionContainer.vue")
+);
+
+const PostsList = defineAsyncComponent(
+  () => import("@/components/PostsList.vue")
+);
 
 const posts: Post[] = usePosts({ limit: 10 });
 const tutorials: Post[] = useTutorials({ limit: 4 });

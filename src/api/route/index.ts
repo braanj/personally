@@ -10,7 +10,7 @@ import { fetcher } from "..";
  * @returns {Promise<any>} - A Promise that resolves to the JSON response if the request is successful.
  *                           If the request fails (non-2xx status), the Promise is rejected.
  */
-export const handler = async (route: string) => {
+export const handler = async (route: string): Promise<any> => {
   // Use the fetcher function to make an asynchronous request to the API.
   return await fetcher(route);
 };

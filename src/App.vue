@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-import AppHeader from "./components/AppHeader.vue";
-import SectionContainer from "@/components/SectionContainer.vue";
+import { defineAsyncComponent } from "vue";
+
+const SectionContainer = defineAsyncComponent(
+  () => import("@/components/SectionContainer.vue")
+);
+
+const AppHeader = defineAsyncComponent(
+  () => import("./components/AppHeader.vue")
+);
 </script>
 
 <template>

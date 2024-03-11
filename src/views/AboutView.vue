@@ -13,5 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import SectionContainer from "@/components/SectionContainer.vue";
+import { defineAsyncComponent } from "vue";
+
+const SectionContainer = defineAsyncComponent(
+  () => import("@/components/SectionContainer.vue")
+);
 </script>

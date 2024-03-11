@@ -1,7 +1,7 @@
 <template>
   <div
     class="bg-white py-20 justify-center items-center flex"
-    :class="{ 'min-h-[90vh]': fullHeight }"
+    :class="{ 'min-h-[80vh]': fullHeight }"
   >
     <div
       class="prose container flex flex-col items-center text-center justify-center"
@@ -18,7 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import GradiantTitle from "./GradiantTitle.vue";
+import { defineAsyncComponent } from "vue";
+
+const GradiantTitle = defineAsyncComponent(() => import("./GradiantTitle.vue"));
 
 const { data } = defineProps({
   data: {

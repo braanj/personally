@@ -2,10 +2,10 @@
   <RouterLink
     v-if="post"
     :to="post.path ? post.path : ''"
-    class="md:flex justify-between gap-6 md:px-6 md:py-4 items-center bg-white rounded-lg no-underline border border-gray"
+    class="post-item__container md:flex justify-between gap-6 md:px-6 md:py-4 items-center bg-white rounded-lg no-underline border border-gray"
   >
     <div class="p-6 md:p-0 w-auto">
-      <small class="block mb-4 font-bold text-gray-400">{{ date }}</small>
+      <small class="block mb-4 font-bold">{{ date }}</small>
       <h2 class="m-0">{{ post.title }}</h2>
       <p class="hidden md:block">{{ post.description }}</p>
     </div>

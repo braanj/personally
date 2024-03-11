@@ -27,11 +27,18 @@
 import { usePosts } from "@/composable/useApi";
 import type { Post } from "@/types/Post";
 import { useRoute } from "vue-router";
-import { computed } from "vue";
-// @ts-ignore
-import showdown from "showdown";
-import PostsList from "@/components/PostsList.vue";
-import SectionContainer from "@/components/SectionContainer.vue";
+import { computed, defineAsyncComponent, onMounted, ref } from "vue";
+
+import useCreateLink from "@/composable/useCreateLink";
+import usePreloadImage from "@/composable/usePreloadImage";
+
+const SectionContainer = defineAsyncComponent(
+  () => import("@/components/SectionContainer.vue")
+);
+
+const PostsList = defineAsyncComponent(
+  () => import("@/components/PostsList.vue")
+);
 
 const route = useRoute();
 
@@ -50,9 +57,13 @@ const recommended = usePosts()
   })
   .slice(0, 3);
 
-const markdownRendered = computed(() => {
-  const converter = new showdown.Converter();
-  return converter.makeHtml(post?.content);
+const markdownRendered = ref("");
+
+onMounted(async () => {
+  const useMarkdown = (await import("@/composable/useMarkdown")).default;
+  await useMarkdown(post?.content).then((response) => {
+    markdownRendered.value = response;
+  });
 });
 
 const postCategories = computed(() => {
@@ -65,4 +76,9 @@ const postCategories = computed(() => {
     }, []);
   }
 });
+
+if (post && post.image) {
+  const image = useCreateLink(post.image);
+  usePreloadImage(image);
+}
 </script>

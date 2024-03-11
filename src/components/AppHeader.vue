@@ -1,5 +1,5 @@
 <template>
-  <header class="py-6 shadow-md fixed top-0 w-full bg-white">
+  <header class="py-6 shadow-md fixed top-0 w-full bg-white z-50">
     <div class="flex gap-2 justify-between items-center container">
       <RouterLink to="/">
         <AppLogo />
@@ -8,7 +8,7 @@
       <nav class="flex gap-4 justify-end">
         <template v-for="item in navigation" :key="item.label">
           <RouterLink
-            class="font-bold visited:text-purple-600"
+            class="font-bold"
             :class="{
               'text-gray-500': item.path !== $route.fullPath,
               'text-blue-500': item.path === $route.fullPath,
@@ -25,5 +25,9 @@
 
 <script setup lang="ts">
 import { navigation } from "@/constants/index";
-import AppLogo from "@/components/svg/AppLogo.vue";
+import { defineAsyncComponent } from "vue";
+
+const AppLogo = defineAsyncComponent(
+  () => import("@/components/svg/AppLogo.vue")
+);
 </script>

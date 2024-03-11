@@ -45,8 +45,11 @@
 <script setup lang="ts">
 import type { Post } from "@/types/Post";
 import PostItem from "@/components/PostItem.vue";
-import SectionContainer from "@/components/SectionContainer.vue";
-import { computed, ref, type PropType } from "vue";
+import { computed, ref, type PropType, defineAsyncComponent } from "vue";
+
+const SectionContainer = defineAsyncComponent(
+  () => import("@/components/SectionContainer.vue")
+);
 
 const { items, itemsPerPage } = defineProps({
   items: {
